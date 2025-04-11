@@ -28,10 +28,10 @@ app.use("/api/auth", authRoute);
 app.use("/api/message", messageRoute);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../Frontend/dist")));
+  app.use(express.static(path.join(__dirname, "../../Frontend")));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../Frontend", "dist", "index.html"));
+    res.sendFile(path.join(__dirname, "../../Frontend", "dist", "index.html"));
   });
 }
 
