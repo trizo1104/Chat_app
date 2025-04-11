@@ -24,8 +24,6 @@ app.use(express.json());
 app.use(cookieParse());
 const port = process.env.PORT || 5001;
 
-connectDB();
-
 app.use("/api/auth", authRoute);
 app.use("/api/message", messageRoute);
 
@@ -39,4 +37,5 @@ if (process.env.NODE_ENV === "production") {
 
 server.listen(port, () => {
   console.log(`server is listen on port ${port}`);
+  connectDB();
 });
