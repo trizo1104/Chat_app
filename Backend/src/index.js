@@ -28,10 +28,17 @@ app.use("/api/auth", authRoute);
 app.use("/api/message", messageRoute);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../Frontend/dist")));
+  const path = require("path");
+  const frontendPath = path.join(__dirname, "../../Frontend/dist");
+  const indexPath = path.join(frontendPath, "index.html");
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../Frontend", "dist", "index.html"));
+  console.log("🌐 Serving frontend from:", frontendPath);
+  console.log("✅ index.html found?", fs.existsSync(indexPath));
+
+  app.use(express.static(frontendPath));
+
+  app.get("/*", (req, res) => {
+    res.sendFile(indexPath);
   });
 }
 
