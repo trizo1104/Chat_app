@@ -11,8 +11,8 @@ const connectDB = require("./lib/db");
 const { app, server } = require("./lib/socket");
 
 //handle increase limit for upload image
-app.use(bodyParser.json({ limit: "2mb" }));
-app.use(bodyParser.urlencoded({ limit: "2mb", extended: true }));
+app.use(bodyParser.json({ limit: "3mb" }));
+app.use(bodyParser.urlencoded({ limit: "3mb", extended: true }));
 
 app.use(
   cors({
@@ -23,7 +23,6 @@ app.use(
 app.use(express.json());
 app.use(cookieParse());
 const port = process.env.PORT || 5001;
-const __dirname = path.resolve();
 
 connectDB();
 
